@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Welcome page</title>
+</head>
+<body>
+<div th:switch=${users}>
+<h2 th:case="null"> No users Yet</h2>
+<div th:case="*">
+<h2>Users</h2>
+<table id="tbl_user">
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Edit</th>
+<th>Delete</th>
+</tr>
+</thead>
+<tbody id="myTable">
+<tr th:each="user:${users}">
+<td th:text="${user.name}"></td>
+<td th:text="${user.email}"></td>
+<td><a th:href=@{/edit/{id}(id=${user.id})}>Edit</a></td>
+<td><a th:href="@{/delete/{id}(id=${user.id})}">Delete</a></td>
+
+</tr>
+</tbody>
+</table>
+</div>
+<p> <a href="/signup">Add a new User</a></p>
+</div>
+
+</body>
+</html>
